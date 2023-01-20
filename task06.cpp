@@ -8,26 +8,36 @@ main()
     int prd,trt,untrt;
     int pat;
     int tot = 0;
+    trt = 0;
+    untrt = 0;
+    int j=7;
     cout <<"Enter the period for calculation : ";
     cin >> prd;
     for(int i=1;i<=prd;i++)
     {
         
         cout << "Enter the number of paitents at Day " << i << " : ";
-        cin pat;
+        cin >> pat;
         tot = pat + tot;
-        trt = 0;
+        if(pat <= 7)
+        {
+             trt = trt + pat;            
+        }
+        else if(pat > 7)
+            {
+                trt = trt + j;
+                untrt = pat - trt;
+            }
+        else if(untrt > trt && i % 3 == 0)
+        {
+            j++;
+            trt = trt + j;
+        }
         untrt = tot - trt;
-        if(trt > untrt)
-        {
-            trt = trt+7;
-        }
-        if(trt < untrt && i % 3 ==0)
-        {
-            trt = trt + 8;
-        }
-
     }
+    cout << j;
+    cout << "Treated patients : " << trt << endl;
+    cout << "Untreated patients : " << untrt;
 }
 
 void triangle(int num)
